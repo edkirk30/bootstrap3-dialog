@@ -17,7 +17,12 @@
 
     // CommonJS module is defined
     if (typeof module !== 'undefined' && module.exports) {
-        module.exports = factory(require('jquery'), require('bootstrap'));
+        if (typeof $ !== undefined) {
+          module.exports = factory($);
+        }
+        else {
+          module.exports = factory(require('jquery'), require('bootstrap'));
+        }
     }
     // AMD module is defined
     else if (typeof define === "function" && define.amd) {
